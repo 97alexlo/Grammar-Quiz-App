@@ -145,7 +145,21 @@ class Level1 extends Component {
                     </div>
 
                     <span style={{ color: 'grey'}}>Infinitive</span>
-                    <h2>{level1[this.state.round].vocab}</h2>
+                    {/* <h2>{level1[this.state.round].vocab}</h2> */}
+                    <div style={{ fontSize: '1.4rem', display: 'flex', justifyContent: 'flex-start' }}>
+                            <li style={{ display: "block"}}>
+                                <p
+                                    onClick={this.handleAudio}
+                                    //use previous rounds audio 
+                                    data-value={level1[this.state.round].mp3}>
+                                <AudioOutlined /> {level1[this.state.round].vocab}
+                                </p>
+                            </li>
+                            <audio id="audio" controls style={{display: 'none'}}>
+                                <source id="audioSource"></source>
+                                Your browser does not support the audio format
+                            </audio>
+                        </div>
 
                     <div style={{ fontSize: '1rem' }}>
                         What is the <span style={{ color: 'red'}}>
@@ -197,14 +211,11 @@ class Level1 extends Component {
                         <h3>Incorrect! Correct answer:</h3>
                         <div style={{ fontSize: '2rem', display: 'flex', justifyContent: 'flex-start' }}>
                             <li style={{ display: "block"}}>
-                                <p
-                                    onClick={this.handleAudio}
-                                    //use previous rounds audio 
-                                    data-value={level1[this.state.round - 1]? level1[this.state.round - 1 ].mp3 : level1[this.state.round].mp3}>
-                                <AudioOutlined /> {this.state.wrongAnswer}
+                                <p>
+                                {this.state.wrongAnswer}
                                 </p>
                             </li>
-                            <audio id="audio" constrols style={{display: 'none'}}>
+                            <audio id="audio" controls style={{display: 'none'}}>
                                 <source id="audioSource"></source>
                                 Your browser does not support the audio format
                             </audio>
