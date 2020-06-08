@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button, Progress, Divider } from "antd";
 import { level1 } from '../data';
 import { Link } from 'react-router-dom';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined} from '@ant-design/icons';
 
 class Level1 extends Component {
 
@@ -69,7 +69,7 @@ class Level1 extends Component {
 
         // can not submit if the timer is 0
         if(this.state.timeOut) {
-            return alert("Please click on Restart to try again")
+            return alert("Time's out! Click on Restart to try again")
         }
 
         // can not submit if there it is blank
@@ -130,6 +130,11 @@ class Level1 extends Component {
         audio.load(); // preload audio without playing
         audio.play();
     }
+
+    renderIcon = () => {
+        return <AudioOutlined style={{fontSize: "1rem"}}/>;
+    }
+
     render() {
         return (
             <div style={{ padding: '.5rem 1rem 1rem', border: '1px solid grey', borderRadius: '6px', maxWidth: 400, margin: '5rem auto' }}>
@@ -147,19 +152,24 @@ class Level1 extends Component {
                     <span style={{ color: 'grey'}}>Infinitive</span>
                     {/* <h2>{level1[this.state.round].vocab}</h2> */}
                     <div style={{ fontSize: '1.4rem', display: 'flex', justifyContent: 'flex-start' }}>
-                            <li style={{ display: "block"}}>
-                                <p
-                                    onClick={this.handleAudio}
-                                    //use previous rounds audio 
-                                    data-value={level1[this.state.round].mp3}>
-                                <AudioOutlined /> {level1[this.state.round].vocab}
-                                </p>
+                            <li style={{ display: "block", cursor: "pointer"}}>
+                            <p
+                                onClick = {this.handleAudio}
+                                data-value={level1[this.state.round].mp3}>
+                                {/* <Button
+                                style={{border: "none", padding: ".5rem .5rem 1rem .6rem", fontSize: "1rem", cursor: "pointer"}}
+                                onClick = {this.handleAudio}
+                                data-value={level1[this.state.round].mp3}> */}
+                                <AudioOutlined/>
+                                {/* </Button> */}
+                                {level1[this.state.round].vocab}
+                            </p>
                             </li>
                             <audio id="audio" controls style={{display: 'none'}}>
                                 <source id="audioSource"></source>
                                 Your browser does not support the audio format
                             </audio>
-                        </div>
+                    </div>
 
                     <div style={{ fontSize: '1rem' }}>
                         What is the <span style={{ color: 'red'}}>
